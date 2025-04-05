@@ -1,0 +1,106 @@
+
+/* Background Animation */
+@keyframes animatedBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+/* Ensure consistent centering for both login and register boxes */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("../images/samp2.jpg"); /* Set the background to samp2.jpg */
+    background-size: cover; /* Make sure the image covers the whole background */
+    background-position: center; /* Center the image */
+    color: #333; /* Text color */
+    height: 100vh; /* Ensure full height */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+/* Password Container Styling */
+.password-container {
+position: relative;
+}
+
+input[type="password"] {
+width: 100%;
+padding-right: 30px; /* Add space for the eye icon */
+}
+
+.toggle-password {
+position: absolute;
+right: 10px;
+top: 50%;
+transform: translateY(-50%);
+cursor: pointer;
+}
+
+/* Common box styling for login and register */
+.login-box, .register-box {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    text-align: center;
+}
+
+.header {
+    text-align: center;
+    padding-bottom: 20px;
+    font-size: 50px;
+    color: #fff;
+}
+/* Title Styling */
+h1 {
+    color: #10121a;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px 0 30px;
+    text-align: center;
+    animation: fadeInOut 3s ease-in-out infinite;
+}
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+button {
+width: 100%;
+padding: 12px;
+border: none;
+border-radius: 5px;
+background: linear-gradient(96deg, #a445b2, #d41872, #fa4299);
+color: white;
+font-size: 16px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+button:hover {
+background: linear-gradient(96deg, #0d1628, #0d1628, #0d1628); /* A slightly darker hover effect */
+}
+
+.register-link {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.footer {
+    text-align: center;
+    padding-top: 75px;
+    letter-spacing: 1.6px;
+    line-height: 22px;
+    color: #fff;
+}

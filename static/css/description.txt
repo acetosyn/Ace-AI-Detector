@@ -1,0 +1,3 @@
+index.CSS - CSS for Plagiarism page
+index2.CSS - CSS for Login and Register Page
+index3.CSS- CSS for AI Page

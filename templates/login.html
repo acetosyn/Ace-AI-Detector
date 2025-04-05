@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+</head> <link rel="stylesheet" href="{{ url_for('static', filename='css/index2.css') }}">
+
+<body>
+    <div class="padding-all">
+        <div class="header">
+        </div>
+        <div class="login-box">
+            <h1>ACE: PLAGIARISM & AI DETECTOR</h1>
+            <h2>Login</h2>
+            <form action="{{ url_for('login') }}" method="POST">
+                <input type="text" name="username" placeholder="Username" required>
+                <div class="password-container">
+                    <input type="password" name="password" placeholder="Password" required>
+                    <span class="toggle-password">👁️</span>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <div class="register-link">
+                Don't have an account? <a href="{{ url_for('register') }}">Register</a>
+            </div>
+        </div>
+        <div class="footer">
+        </div>
+    </div>
+    <script>
+        document.querySelector('.toggle-password').addEventListener('click', function () {
+            const passwordField = this.previousElementSibling;
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plagiarism Checker</title>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head> <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<body>
+    <header>
+            <!-- Update ACE logo link to direct to '/home' -->
+        <a href="{{ url_for('home') }}" class="logo">
+            <span class="logo-a">A</span><span class="logo-c">C</span><span class="logo-e">E</span>
+        </a>
+    
+        <div class="nav">
+            <!-- Services Dropdown -->
+            <div class="nav-item">
+                Services
+                <div class="dropdown">
+                    <a href="{{ url_for('ai_game') }}" class="dropdown-item">AI</a>
+                    <a href="#" class="dropdown-item">Plagiarism</a>
+                    <a href="#" class="dropdown-item">Library</a>
+                    <a href="#" class="dropdown-item">Publications</a>
+                </div>
+            </div>
+            
+            <a href="#" class="nav-item">Contact</a>
+            <a href="#" class="nav-item">About Us</a>
+        </div>
+    
+        <!-- User Icon Dropdown -->
+            <div class="user-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                </svg>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-item">My Account</a>
+                    <a href="#" class="dropdown-item">Upgrade</a>
+                    <a href="#" class="dropdown-item">Subscribe</a>
+                    <a href="{{ url_for('logout') }}" class="dropdown-item">Logout</a>
+                </div>
+            </div>
+    
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+        </div>
+    </header>  
+    <!-- Intro Section - Shown if show_plagiarism_page is False -->
+    {% if not show_plagiarism_page %}
+    <div id="introSection" class="intro-section">
+        <h1>Welcome to ACE: Plagiarism & AI Detector</h1>
+        <p>Explore our advanced detection tool to identify AI-generated and plagiarized content. Click "DETECT" to begin checking your content or "PLAY" to test your skills in distinguishing AI text and images from Human text and images!</p>
+        <div class="intro-buttons">
+            <form method="POST">
+                <button type="submit" name="action" value="detect" class="intro-button check-ai">DETECT</button>
+            </form>
+             <a href="{{ url_for('ai_game') }}" class="intro-button play-game">PLAY</a>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Plagiarism Page - Shown if show_plagiarism_page is True -->
+    {% if show_plagiarism_page %}
+    <div id="plagiarismPage">
+        <div class="welcome-header">ACE: PLAGIARISM & AI DETECTOR</div>
+        <div class="welcome-message">
+            <marquee>Welcome to ACE! The website detects plagiarism and AI-generated contents. To get started, please paste
+                a text, link, or upload a document in PDF or Doc.</marquee>
+        </div>
+        <div class="container">
+            <div class="input-section">
+                <form action="/plagiarism" method="POST" enctype="multipart/form-data" onsubmit="document.getElementById('introSection').style.display = 'none'; document.getElementById('plagiarismPage').style.display = 'block';">
+                    <input type="file" name="file_upload" accept=".pdf,.docx" onchange="this.form.submit();">
+                    <textarea name="input_text" placeholder="Enter your text or paste a URL link here...">{{ extracted_text }}</textarea>
+                    <div class="counts">
+                        <span>Characters: {{ character_count }}</span>
+                        <span>Words: {{ word_count }}</span>
+                    </div>
+                    <div class="buttons">
+                        <button type="submit" name="action" value="detect-ai">DETECT AI</button>
+                        {% if show_reset %}
+                        <button type="submit" name="action" value="reset">RESET</button>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+            <div class="analysis-result-section">
+                <h3>Analysis Result</h3>
+                {% if ai_generated is not none %}
+                    <div class="result-item" style="animation: fadeIn 1.5s;">
+                        {% if ai_generated %}
+                            <p style="font-size: 20px; color: #d9534f;">AI GENERATED!!!!</p>
+                            <p><img src="../static/images/AI.png" alt="AI Icon" style="width: 50px; height: auto;"></p>
+                            <p style="font-size: 18px;">{{ probability * 100 | round(2) }}% AI detected</p>
+                        {% else %}
+                            <p><img src="../static/images/pass.webp" alt="Pass Icon" style="width: 50px; height: auto;"></p>
+                            <p style="font-size: 20px; color: #5cb85c;">PASSES AS HUMAN!</p>
+                            <p><img src="../static/images/Human.png" alt="Human Icon" style="width: 50px; height: auto;"></p>
+                            <p style="font-size: 18px;">{{ (probability * 100) | round(2) }}% AI detection.</p>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <p>No results to display. Please check your input.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Flash Messages -->
+    <div class="flash-message-container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li class="flash-message">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

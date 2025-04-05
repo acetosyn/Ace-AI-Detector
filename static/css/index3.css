@@ -1,0 +1,335 @@
+/* External CSS File - index.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap');
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("../images/samp2.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #333;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1f0f32;
+    padding: 10px 20px;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.logo {
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    font-family: 'Bagel Fat One', cursive;
+    text-shadow: 2px 2px #09101e, 4px 4px #120515;
+}
+.logo-a { color: #fcff3a; margin-right: -1px; }
+.logo-c { color: white; }
+.logo-e { color: #fcff3a; }
+
+.nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-item {
+    position: relative;
+    padding: 15px 25px;
+    background-color: #1f0f32;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+a.nav-item, a.nav-item:hover {
+    text-decoration: none;
+}
+
+.nav-item:hover {
+    background: #d41872;
+    background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: linear-gradient(left, #a445b2, #d41872, #fa4299);
+}
+
+/* Dropdown for Services */
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #1f0f32;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 150px;
+}
+.nav-item:hover .dropdown {
+    display: block;
+    background-color: #1f0f32;
+    padding: 10px 0;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+.dropdown-item:hover {
+    background: #d41872;
+    background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: linear-gradient(left, #a445b2, #d41872, #fa4299);
+}
+
+.user-icon {
+    position: relative;
+    margin-right: -485px;
+}
+.user-icon svg { cursor: pointer; color: #fcff3a; }
+.user-icon .dropdown {
+    display: none;
+    position: absolute;
+    top: 23px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1f0f32;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 10;
+    width: 150px;
+    padding: 10px 0;
+}
+.user-icon:hover .dropdown {
+    display: block;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-right: 30px;
+}
+.fa {
+    padding: 10px;
+    font-size: 18px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    display: inline-block;
+}
+.fa-facebook { background: #3B5998; color: white; }
+.fa-twitter { background: #55ACEE; color: white; }
+.fa:hover { opacity: 0.8; }
+/*  */
+
+.game-container {
+    max-width: 1600px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    min-height: 100%;
+}
+
+
+
+
+.game-title {
+    font-size: 35px;
+    font-weight: bold;
+    color: #0f4b7c;
+    text-shadow: 1px 1px #09101e;
+    margin-bottom: 20px;
+}
+
+.game-instructions {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.slide-animation {
+    animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+.game-content {
+    font-size: 24px;
+    color: #1f0f32;
+    font-weight: bold;
+    padding: 20px;
+    background-color: #fcff3a;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    min-height: 200px;
+}
+
+/* Button for starting the game */
+#startButton {
+    font-size: 22px;
+    padding: 15px 30px;
+    margin: 30px auto;
+    display: block;
+    background: #1f0f32;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#startButton:hover {
+    background: #d41872;
+    background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: linear-gradient(left, #a445b2, #d41872, #fa4299);
+}
+/* Animation for images */
+.zoom-in-out {
+    animation: zoom-in-out 1.5s ease infinite;
+}
+
+@keyframes zoom-in-out {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Animation for text */
+.fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hover effect for buttons */
+.buttons button, .buttons a {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #1f0f32;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buttons a:hover, .buttons button:hover {
+    background: #d41872;
+    background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: linear-gradient(left, #a445b2, #d41872, #fa4299);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.game-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.guess-buttons {
+    display: flex;
+    gap: 10px;
+    margin: 0;
+}
+
+.guess-buttons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #1f0f32;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.guess-buttons button:hover {
+    background: #d41872;
+    background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: linear-gradient(left, #a445b2, #d41872, #fa4299);
+}
+
+.feedback {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4a148c;
+    margin-top: 20px;
+}
+
+.scoreboard {
+    margin-top: 30px;
+    font-size: 22px;
+    color: #ffeb3b;
+    font-weight: bold;
+}
+
+/* Analysis and end-game button container */
+.analysis-section {
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.end-game-options {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.play-again-button,
+.end-game-button {
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #1f0f32;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.play-again-button:hover,
+.end-game-button:hover {
+    background: linear-gradient(96deg, #a445b2, #d41872, #fa4299);
+}
+
