@@ -1,9 +1,7 @@
 # Core libraries for data processing and AI detection
 import os
 import sys
-import time
 import secrets
-import logging
 import requests
 from requests.exceptions import ConnectionError, Timeout
 
