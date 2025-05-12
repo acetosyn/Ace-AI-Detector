@@ -12,7 +12,7 @@ This web application is designed to detect whether a given text is AI-generated 
 
 ## 🖼️ Screenshots
 
-Hover to preview isn’t supported in GitHub Markdown, but here are the full screenshots displayed directly:
+Preview of ACE from login to Dashboard:
 
 ![Ace Screenshot 1](static/images/Ace1.JPG)
 ![Ace Screenshot 2](static/images/Ace2.JPG)
