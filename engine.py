@@ -1,25 +1,23 @@
-# Core libraries for data processing and AI detection
 import os
 import sys
 import secrets
 import requests
-from requests.exceptions import ConnectionError, Timeout
-
-# Data and text processing libraries
 import pandas as pd
 import joblib
 import docx
 import PyPDF2
 from bs4 import BeautifulSoup
-
-# Flask components
-from flask_login import LoginManager, UserMixin
+from requests.exceptions import ConnectionError, Timeout
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, UserMixin
+from sklearn.exceptions import NotFittedError
 
-# Set up base directory
+# Setup base directory and model path
 basedir = os.path.abspath(os.path.dirname(__file__))
+model_file_name = 'pipeline_model.pkl'
+model_file_path = os.path.join(basedir, model_file_name)
 
-# Get absolute path for resources (useful for PyInstaller packaging)
+# Resource path utility (for PyInstaller or server deployment)
 def resource_path(relative_path):
     try:
         base_path = sys._MEIPASS
@@ -27,19 +25,15 @@ def resource_path(relative_path):
         base_path = os.path.abspath(".")
     return os.path.join(base_path, relative_path)
 
-# Generate a secret key for app configuration
+# App secret key
 secret_key = secrets.token_hex(16)
 
-# Initialize database and login manager
+# Flask extensions
 db = SQLAlchemy()
 login_manager = LoginManager()
 login_manager.login_view = 'login'
 
-def create_tables():
-    """Create database tables."""
-    db.create_all()
-
-# Define User model for authentication
+# DB model for user authentication
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
@@ -50,27 +44,41 @@ class User(UserMixin, db.Model):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# Load trained AI detection model
-model_file_path = 'pipeline_model.pkl'
-if os.path.exists(model_file_path):
-    grid_search = joblib.load(model_file_path)
-    print("Model loaded from disk.")
+# Create DB tables
+def create_tables():
+    db.create_all()
+
+# Load AI detection model
+grid_search = None
+try:
+    grid_search = joblib.load(resource_path(model_file_name))
+    print("[INFO] pipeline_model.pkl loaded successfully.")
+except Exception as e:
+    print(f"[ERROR] Failed to load model: {e}")
 
 # Detect AI-generated text
 def detect_ai_generated(text, threshold=0.7):
-    """
-    Predict if the given text is AI-generated.
-    Returns a dict with probability and classification.
-    """
-    text_series = pd.Series([text])
-    proba = round(grid_search.predict_proba(text_series)[0][1], 2)
-    print(f"AI Probability: {proba:.2f}")
-    return {'is_ai': proba >= threshold, 'proba': proba}
+    if not grid_search:
+        return {'is_ai': False, 'proba': 0.0, 'error': 'Model not loaded.'}
+    
+    try:
+        text_series = pd.Series([text])
+        proba = round(grid_search.predict_proba(text_series)[0][1], 2)
+        print(f"[DEBUG] AI Probability: {proba:.2f}")
+        return {'is_ai': proba >= threshold, 'proba': proba}
+    except NotFittedError:
+        return {'is_ai': False, 'proba': 0.0, 'error': 'Model not fitted properly. Re-train or fix model.'}
+    except Exception as e:
+        return {'is_ai': False, 'proba': 0.0, 'error': str(e)}
 
-# Extract text from a given URL
+# Extract readable text from a webpage
 def extract_text_from_url(url):
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        'User-Agent': (
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+            'AppleWebKit/537.36 (KHTML, like Gecko) '
+            'Chrome/91.0.4472.124 Safari/537.36'
+        )
     }
     try:
         response = requests.get(url, headers=headers, timeout=10)
@@ -85,15 +93,21 @@ def extract_text_from_url(url):
     except Exception as e:
         return f"An error occurred: {str(e)}"
 
-# Extract text from a PDF file
+# Extract text from a PDF
 def extract_text_from_pdf(file_stream):
     pdf_text = ''
-    reader = PyPDF2.PdfReader(file_stream)
-    for page in reader.pages:
-        pdf_text += page.extract_text() or ''
+    try:
+        reader = PyPDF2.PdfReader(file_stream)
+        for page in reader.pages:
+            pdf_text += page.extract_text() or ''
+    except Exception as e:
+        return f"Failed to extract text from PDF: {str(e)}"
     return pdf_text
 
-# Extract text from a DOCX file
+# Extract text from a DOCX
 def extract_text_from_docx(file_stream):
-    doc = docx.Document(file_stream)
-    return '\n'.join([para.text for para in doc.paragraphs])
+    try:
+        doc = docx.Document(file_stream)
+        return '\n'.join([para.text for para in doc.paragraphs])
+    except Exception as e:
+        return f"Failed to extract text from DOCX: {str(e)}"
