@@ -12,11 +12,11 @@ This web application is designed to detect whether a given text is AI-generated 
 
 ## 🖼️ Screenshots
 
-Click any image below to enlarge:
+Hover to preview isn’t supported in GitHub Markdown, but here are the full screenshots displayed directly:
 
-[![Ace Screenshot 1](static/images/Ace1.jpg)](static/images/Ace1.JPG)
-[![Ace Screenshot 2](static/images/Ace2.jpg)](static/images/Ace2.JPG)
-[![Ace Screenshot 3](static/images/Ace3.jpg)](static/images/Ace3.JPG)
+![Ace Screenshot 1](static/images/Ace1.JPG)
+![Ace Screenshot 2](static/images/Ace2.JPG)
+![Ace Screenshot 3](static/images/Ace3.JPG)
 
 
 📌 Dependencies
