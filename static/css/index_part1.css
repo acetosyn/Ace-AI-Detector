@@ -1,0 +1,241 @@
+/* =======================
+   Imports & Keyframes
+======================= */
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap');
+
+@keyframes processing {
+    0% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.8); }
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.5); }
+}
+
+/* =======================
+   Base & Layout Styles
+======================= */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("../images/samp2.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #333;
+}
+
+/* =======================
+   Header & Navigation
+======================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1f0f32;
+    padding: 10px 20px;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Logo styles */
+.logo {
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    font-family: 'Bagel Fat One', cursive;
+    text-shadow: 2px 2px #09101e, 4px 4px #120515;
+    text-decoration: none;
+    cursor: pointer;
+}
+.logo-a { color: #fcff3a; margin-right: -1px; }
+.logo-c { color: white; }
+.logo-e { color: #fcff3a; text-decoration: none; }
+.logo a {
+    text-decoration: none;
+    color: inherit;
+}
+.logo a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.nav-item {
+    position: relative;
+    padding: 15px 25px;
+    background-color: #1f0f32;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+a.nav-item, a.nav-item:hover {
+    text-decoration: none;
+}
+.nav-item:hover {
+    background: #d41872;
+    background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: linear-gradient(left, #a445b2, #d41872, #fa4299);
+}
+
+/* Dropdown for Services */
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #1f0f32;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 150px;
+}
+.nav-item:hover .dropdown {
+    display: block;
+    background-color: #1f0f32;
+    padding: 10px 0;
+}
+.dropdown-item {
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+.dropdown-item:hover {
+    background: #d41872;
+    background: -webkit-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: -o-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: -moz-linear-gradient(left, #a445b2, #d41872, #fa4299);
+    background: linear-gradient(left, #a445b2, #d41872, #fa4299);
+}
+
+/* User Icon Dropdown */
+.user-icon {
+    position: relative;
+    margin-right: -485px;
+}
+.user-icon svg { cursor: pointer; color: #fcff3a; }
+.user-icon .dropdown {
+    display: none;
+    position: absolute;
+    top: 23px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1f0f32;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 10;
+    width: 150px;
+    padding: 10px 0;
+}
+.user-icon:hover .dropdown {
+    display: block;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-right: 30px;
+}
+.fa {
+    padding: 10px;
+    font-size: 18px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    display: inline-block;
+}
+.fa-facebook { background: #3B5998; color: white; }
+.fa-twitter { background: #55ACEE; color: white; }
+.fa:hover { opacity: 0.8; }
+
+/* =======================
+   Animations & Headers
+======================= */
+.processing {
+    text-align: center;
+    margin: 20px;
+    font-size: 20px;
+    color: #d9534f;
+    animation: processing 1s infinite;
+}
+.welcome-header {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: #ccfb30;
+    margin: 20px auto;
+    animation: fadeInOut 3s ease-in-out infinite;
+}
+
+/* =======================
+   Responsive: Header & Navigation
+======================= */
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 12px;
+    }
+
+    .logo {
+        font-size: 24px;
+        margin-bottom: 0;
+        flex: 1 1 100%;
+        text-align: center;
+    }
+
+    .nav {
+        flex: 1 1 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .nav-item {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .social-icons {
+        justify-content: center;
+        flex: 1 1 100%;
+        margin-top: 10px;
+    }
+
+    .user-icon {
+        margin-right: 0;
+        flex: 1 1 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .dropdown {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        padding: 5px 0;
+    }
+}

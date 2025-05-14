@@ -421,10 +421,6 @@ input[type="submit"] { display: block; margin-bottom: 20px; margin-left: -60px; 
 }
 
 
-
-
-
-
 /* Ensure full responsiveness */
 @media screen and (max-width: 768px) {
     body, html {
@@ -484,6 +480,3 @@ input[type="submit"] { display: block; margin-bottom: 20px; margin-left: -60px; 
     padding: 10px;
     font-weight: bold;
 }
-
-
-
