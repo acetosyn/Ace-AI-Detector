@@ -14,9 +14,10 @@ This web application is designed to detect whether a given text is AI-generated 
 
 Preview of ACE from login to Dashboard:
 
-![Ace Screenshot 1](static/images/Ace1.JPG)
-![Ace Screenshot 2](static/images/Ace2.JPG)
-![Ace Screenshot 3](static/images/Ace3.JPG)
+![Ace Screenshot 1](static/images/Ace1.jpg)
+![Ace Screenshot 2](static/images/Ace2.jpg)
+![Ace Screenshot 3](static/images/Ace3.jpg)
+
 
 
 📌 Dependencies
