@@ -2,6 +2,17 @@
 
 **ACE AI Detector** is a smart web app that detects whether any text is **AI-generated** or **human-written** using a custom-trained ML pipeline. You can paste text, upload documents, or extract content from URLs — and get instant results with probability scoring.
 
+##
+🔐 Login Credentials:
+
+Username: ace
+
+Password: ace
+
+👉 Please sign in using the credentials above. Do not register a new account.
+
+##
+
 🌐 **Live Demo**:  
 👉 [ace-ai-detector-xkv7.onrender.com](https://ace-ai-detector-xkv7.onrender.com/)
 
@@ -19,11 +30,14 @@
 
 ## 🖼️ Screenshots
 
-Preview from login to dashboard:
+##
 
-<img src="static/images/Ace1.JPG" width="400" />
-<img src="static/images/Ace2.JPG" width="400" />
-<img src="static/images/Ace3.JPG" width="400" />
+
+Preview of ACE from login to Dashboard:
+
+![Ace Screenshot 1](static/images/Ace1.JPG)
+![Ace Screenshot 2](static/images/Ace2.JPG)
+![Ace Screenshot 3](static/images/Ace3.JPG)
 
 ---
 
